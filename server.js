@@ -24,3 +24,38 @@ const writeData = (data) => {
 };
 
 // write CRUDS below
+app.post
+
+app.get('/data', (req, res) => {
+    const data = readData();
+    res.json(data);
+});
+
+app.get('/data/:id', (req, res) => {
+    const data = readData();
+    const item = data.find(d => d.id === req.params.id);
+    if (item) {
+        res.json(item);
+    } else {
+        res.status(404).json({ error: 'Item not found' });
+    }
+});
+
+app.put('/data/:id', (req, res) => {
+    const data = readData();
+    const index = data.findIndex(d => d.id === req.params.id);
+    if (index === -1) {
+        res.status(404).json({ error: 'Item not found' });
+        return;
+    } 
+    data[index] = { ...data[index], ...req.body };
+        writeData(data);
+        res.json(data[index]);
+});
+
+app.delete('/data/:id', (req, res) => {
+    const data = readData();
+    const filteredData = data.filter(d => d.id !== req.params.id);
+    writeData(filteredData);
+    res.json({ message: 'Item deleted successfully' });
+});
