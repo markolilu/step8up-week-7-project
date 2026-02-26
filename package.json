@@ -12,6 +12,7 @@
   "description": "Now that you have learned how to:",
   "dependencies": {
     "express": "^4.22.1",
+    "uuid": "^13.0.0",
     "uuidv4": "^6.2.13"
   },
   "repository": {
