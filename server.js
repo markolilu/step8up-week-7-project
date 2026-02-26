@@ -24,7 +24,13 @@ const writeData = (data) => {
 };
 
 // write CRUDS below
-app.post
+app.post('/data', (req, res) => {
+    const data = readData();
+    const newItem = { id: uuidv4(), ...req.body };
+    data.push(newItem);
+    writeData(data);
+    res.json(data);
+});
 
 app.get('/data', (req, res) => {
     const data = readData();
@@ -58,4 +64,8 @@ app.delete('/data/:id', (req, res) => {
     const filteredData = data.filter(d => d.id !== req.params.id);
     writeData(filteredData);
     res.json({ message: 'Item deleted successfully' });
+});
+
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
 });
