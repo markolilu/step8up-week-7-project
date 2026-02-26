@@ -23,6 +23,12 @@ const writeData = (data) => {
     fs.writeFileSync(dataFilePath, JSON.stringify(data, null, 2));
 };
 
+app.use(express.static(path.join(__dirname, "public")));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.htm"));
+});
+
 // write CRUDS below
 app.post('/data', (req, res) => {
     const data = readData();
