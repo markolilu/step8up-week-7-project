@@ -1,0 +1,42 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const dataList = document.getElementById("data-list");
+  const dataForm = document.getElementById("data-form");
+  const dataInput = document.getElementById("data-input");
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch("/data");
+      const data = await response.json();
+      dataList.innerHTML = ""; 
+      data.forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = item.id + ": " + JSON.stringify(item);
+        dataList.appendChild(li);
+      });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  dataForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const newData = { text: dataInput.value };
+
+    try {
+      const response = await fetch("/data", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newData),
+      });
+
+      if (response.ok) {
+        dataInput.value = ""; 
+        fetchData(); 
+      }
+    } catch (error) {
+      console.error("Error adding data:", error);
+    }
+  });
+
+  fetchData();
+});
