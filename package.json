@@ -9,9 +9,18 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "Now that you have learned how to:",
   "dependencies": {
-    "express": "^4.21.2",
+    "express": "^4.22.1",
     "uuidv4": "^6.2.13"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/markolilu/step8up-week-7-project.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/markolilu/step8up-week-7-project/issues"
+  },
+  "homepage": "https://github.com/markolilu/step8up-week-7-project#readme"
 }
