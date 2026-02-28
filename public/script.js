@@ -80,3 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   fetchData();
 });
+
+toggle-button.addEventListener("click", () => {
+    dataList.classList.toggle("hidden");
+});
