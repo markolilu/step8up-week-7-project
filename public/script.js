@@ -12,6 +12,28 @@ document.addEventListener("DOMContentLoaded", () => {
         const li = document.createElement("li");
         li.textContent = item.text;
 
+        const editButton = document.createElement("button");
+        editButton.textContent = "Edit";
+
+        editButton.addEventListener("click", () => {
+          const newText = prompt("Enter new text:", item.text);
+          if (newText) {
+            fetch(`/data/${item.id}`, {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ text: newText }),
+            })
+              .then((response) => {
+                if (response.ok) {
+                  fetchData();
+                }
+              })
+              .catch((error) => {
+                console.error("Error updating data:", error);
+              });
+          }
+        });
+
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "Delete";
         deleteButton.addEventListener("click", async () => {
@@ -27,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         });
           
+        li.appendChild(editButton);
         li.appendChild(deleteButton);
         dataList.appendChild(li);
       });
