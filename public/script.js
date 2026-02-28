@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const dataList = document.getElementById("data-list");
   const dataForm = document.getElementById("data-form");
   const dataInput = document.getElementById("data-input");
+  const toggleBtn = document.getElementById("toggleBtn");
 
   const fetchData = async () => {
     try {
@@ -78,9 +79,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  toggleBtn.addEventListener("click", () => {
+      dataList.classList.toggle("hidden");
+  });
+
   fetchData();
 });
 
-toggle-button.addEventListener("click", () => {
-    dataList.classList.toggle("hidden");
-});
